@@ -8,6 +8,8 @@ builder.Services.AddDbContext<TodoContext>(opt =>
     opt.UseInMemoryDatabase("TodoList"));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+DbContextOptionsBuilder contextOptionsBuilder = new DbContextOptionsBuilder();  
+contextOptionsBuilder.EnableSensitiveDataLogging(true);
 
 var app = builder.Build();
 
@@ -15,6 +17,8 @@ if (app.Environment.IsDevelopment()) {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 
